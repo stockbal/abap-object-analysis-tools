@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>API for Object Environment Analysis</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_ANALYZER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create new Object Environment Analyzer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_SOURCE_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates new source object instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_SOURCE_OBJECT_NO_CHECK</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates fully defined source object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_USED_OBJECT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates new used object instance</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

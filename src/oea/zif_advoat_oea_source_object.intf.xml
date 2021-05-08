@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Source Object for which OEA was triggered</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>DETERMINE_ENVIRONMENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determines object environment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>EXISTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if the source object exists</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>GET_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the value of the attribute &apos;id&apos;</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>NEEDS_PROCESSING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns value for the flag &apos;processing&apos;</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>PERSIST</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Persists the current</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>SET_GENERATED</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sets the value for the &apos;generated&apos; flag</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>SET_ID</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sets the ID of the source object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>SET_PARENT_REF</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sets reference to parent</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>SET_PROCESSING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sets the value for the &apos;processing&apos; flag</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_OEA_SOURCE_OBJECT</CLSNAME>
+     <CMPNAME>TO_STRUCTURE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the object in structure form</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

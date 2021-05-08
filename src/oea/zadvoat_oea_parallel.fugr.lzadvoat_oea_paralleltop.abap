@@ -1,0 +1,3 @@
+FUNCTION-POOL ZADVOAT_OEA_PARALLEL.         "MESSAGE-ID ..
+
+* INCLUDE LZADVOAT_OEA_PARALLELD...          " Local class definition

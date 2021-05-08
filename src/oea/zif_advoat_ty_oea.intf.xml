@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Types for Object environment analysis</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_AGGREGATION_LEVEL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Aggregation level for analysis</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_ANALYSIS_INFO_DB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Object environment analysis info</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_ANALYSIS_MODE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Mode for environment analysis</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_SOURCE_OBJECTS_EXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Extended Source Objects</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_SOURCE_OBJECT_DB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Detailed source object for analysis</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_SOURCE_OBJECT_EXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Extended source object for analysis</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_USED_OBJECTS_DB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of used objects</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_USED_OBJECT_DB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Used object</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
