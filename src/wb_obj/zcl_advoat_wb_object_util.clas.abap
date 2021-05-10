@@ -55,7 +55,8 @@ CLASS zcl_advoat_wb_object_util IMPLEMENTATION.
 
   METHOD resolve_include_to_wb_object.
     DATA: is_fugr_include   TYPE abap_bool,
-          is_functionmodule TYPE abap_bool.
+          is_functionmodule TYPE abap_bool,
+          function_group    TYPE rs38l_area.
 
     CALL FUNCTION 'RS_PROGNAME_SPLIT'
       EXPORTING
@@ -63,6 +64,7 @@ CLASS zcl_advoat_wb_object_util IMPLEMENTATION.
       IMPORTING
         fugr_is_include_name        = is_fugr_include
         fugr_is_functionmodule_name = is_functionmodule
+        fugr_group                  = function_group
       EXCEPTIONS
         delimiter_error             = 0.
 
@@ -81,6 +83,10 @@ CLASS zcl_advoat_wb_object_util IMPLEMENTATION.
       wb_object-sub_type = swbm_c_type_function.
       wb_object-name = function_info-group.
       wb_object-display_name = function_info-name.
+    ELSEIF is_fugr_include = abap_true.
+      wb_object-sub_type = swbm_c_type_prg_include.
+      wb_object-name = function_group.
+      wb_object-display_name = include_name.
     ELSE.
       wb_object-sub_type = swbm_c_type_prg_include.
       wb_object-name = include_name.
