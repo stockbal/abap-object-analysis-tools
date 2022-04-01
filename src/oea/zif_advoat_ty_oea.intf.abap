@@ -26,6 +26,16 @@ INTERFACE zif_advoat_ty_oea
   TYPES END OF ty_analysis_info_db.
 
   TYPES:
+    "! <p class="shorttext synchronized" lang="en">Input for object environment analysis (in parallel)</p>
+    BEGIN OF ty_oea_parl_input,
+      analysis_id   TYPE sysuuid_x16,
+      name          TYPE sobj_name,
+      display_name  TYPE sobj_name,
+      type          TYPE trobjtype,
+      sub_type      TYPE seu_objtyp,
+      external_type TYPE trobjtype,
+    END OF ty_oea_parl_input,
+
     "! <p class="shorttext synchronized" lang="en">Aggregation level for analysis</p>
     ty_aggregation_level  TYPE c LENGTH 1,
 

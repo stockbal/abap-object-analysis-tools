@@ -8,25 +8,43 @@ INTERFACE zif_advoat_ty_global
       "! Name in TADIR
       name         TYPE sobj_name,
       display_name TYPE sobj_name,
-    END OF ty_wb_object_name.
+    END OF ty_wb_object_name,
 
-  TYPES:
     "! Information about object that needs to be checked
     BEGIN OF ty_tadir_object,
       name    TYPE sobj_name,
       type    TYPE trobjtype,
       package TYPE devclass,
-    END OF ty_tadir_object.
+    END OF ty_tadir_object,
 
-  TYPES:
     "! Information about function module
     BEGIN OF ty_function_info,
       name    TYPE tfdir-funcname,
       group   TYPE rs38l_area,
       include TYPE tfdir-pname,
-    END OF ty_function_info.
+    END OF ty_function_info,
 
-  TYPES:
+    BEGIN OF ty_method_param_info,
+      "! Name of a method parameter
+      name        TYPE seocmpname,
+      "! Type handle of the parameter
+      type_handle TYPE REF TO cl_abap_datadescr,
+    END OF ty_method_param_info,
+
+    " <p class="shorttext synchronized" lang="en">Param definitions for parallel processing handler</p>
+    BEGIN OF ty_parallel_handler,
+      "! Class name of the parallel handler
+      classname    TYPE string,
+      "! Method name of the parallel handler
+      method       TYPE seocpdname,
+      "! Information about input parameter
+      input_param  TYPE ty_method_param_info,
+      "! Information about output parameter
+      output_param TYPE ty_method_param_info,
+    END OF ty_parallel_handler,
+
+    ty_server_group             TYPE rzlli_apcl,
+
     "! <p class="shorttext synchronized" lang="en">Task name for parallel processing</p>
     ty_task_name                TYPE c LENGTH 32,
     "! Range of UUID C32

@@ -12,6 +12,7 @@ CLASS zcl_advoat_oea_factory DEFINITION
           description    TYPE string OPTIONAL
           source_objects TYPE zif_advoat_ty_global=>ty_tadir_objects
           parallel       TYPE abap_bool OPTIONAL
+          server_group   TYPE rzlli_apcl OPTIONAL
         RETURNING
           VALUE(result)  TYPE REF TO zif_advoat_oea_analyzer,
       "! <p class="shorttext synchronized" lang="en">Creates new used object instance</p>
@@ -41,7 +42,14 @@ CLASS zcl_advoat_oea_factory DEFINITION
           sub_type      TYPE seu_objtyp
           external_type TYPE trobjtype
         RETURNING
-          VALUE(result) TYPE REF TO zif_advoat_oea_source_object.
+          VALUE(result) TYPE REF TO zif_advoat_oea_source_object,
+
+      "! <p class="shorttext synchronized" lang="en">Determines object environment (for ARFC call)</p>
+      determine_object_env_arfc
+        IMPORTING
+          input  TYPE zif_advoat_ty_oea=>ty_oea_parl_input
+        EXPORTING
+          output TYPE sy-subrc.
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -52,10 +60,30 @@ CLASS zcl_advoat_oea_factory IMPLEMENTATION.
 
 
   METHOD create_analyzer.
-    result = NEW zcl_advoat_oea_analyzer(
-      description    = description
-      source_objects = source_objects
-      parallel       = parallel ).
+    DATA: task_runner TYPE REF TO zif_advoat_parl_task_runner.
+
+    IF parallel = abap_true.
+      TRY.
+          task_runner = zcl_advoat_parl_task_runner=>new(
+            server_group   = server_group
+            max_tasks      = 12
+            handler_class  = 'ZCL_ADVOAT_OEA_FACTORY'
+            handler_method = 'DETERMINE_OBJECT_ENV_ARFC' ).
+        CATCH zcx_advoat_exception INTO DATA(error) ##needed.
+          " TODO: collect error into log
+      ENDTRY.
+    ENDIF.
+
+    result = COND #(
+      WHEN task_runner IS BOUND THEN
+        NEW zcl_advoat_oea_parl_analyzer(
+          description    = description
+          source_objects = source_objects
+          task_runner = task_runner )
+      ELSE
+        NEW zcl_advoat_oea_analyzer(
+          description    = description
+          source_objects = source_objects ) ).
   ENDMETHOD.
 
 
@@ -65,10 +93,10 @@ CLASS zcl_advoat_oea_factory IMPLEMENTATION.
       external_type = external_type ).
 
     result = NEW zcl_advoat_oea_source_object(
-      name         = wb_object-name
-      display_name = wb_object-display_name
-      type         = wb_object-type
-      sub_type     = wb_object-sub_type
+      name          = wb_object-name
+      display_name  = wb_object-display_name
+      type          = wb_object-type
+      sub_type      = wb_object-sub_type
       external_type = external_type ).
   ENDMETHOD.
 
@@ -99,5 +127,21 @@ CLASS zcl_advoat_oea_factory IMPLEMENTATION.
       sub_type     = wb_object-sub_type ).
   ENDMETHOD.
 
+
+  METHOD determine_object_env_arfc.
+    zcl_advoat_parl_proc_utils=>assert_async_rfc_call( ).
+
+    DATA(source_object) = create_source_object_no_check(
+      name          = input-name
+      display_name  = input-display_name
+      type          = input-type
+      sub_type      = input-sub_type
+      external_type = input-external_type ).
+    source_object->determine_environment( ).
+    source_object->persist( input-analysis_id ).
+
+    output = 0.
+
+  ENDMETHOD.
 
 ENDCLASS.

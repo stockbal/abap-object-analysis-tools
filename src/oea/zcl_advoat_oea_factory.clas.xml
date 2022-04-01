@@ -36,6 +36,12 @@
      <LANGU>E</LANGU>
      <DESCRIPT>Creates new used object instance</DESCRIPT>
     </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_OEA_FACTORY</CLSNAME>
+     <CMPNAME>DETERMINE_OBJECT_ENV_ARFC</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determines object environment (for ARFC call)</DESCRIPT>
+    </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
  </asx:abap>

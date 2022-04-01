@@ -31,6 +31,12 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
+     <CMPNAME>TY_OEA_PARL_INPUT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Input for object environment analysis (in parallel)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_TY_OEA</CLSNAME>
      <CMPNAME>TY_SOURCE_OBJECTS_EXT</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Extended Source Objects</DESCRIPT>

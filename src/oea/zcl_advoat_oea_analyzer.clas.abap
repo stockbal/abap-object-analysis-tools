@@ -1,7 +1,6 @@
 "! <p class="shorttext synchronized" lang="en">Logs Object Environment</p>
 CLASS zcl_advoat_oea_analyzer DEFINITION
   PUBLIC
-  FINAL
   CREATE PUBLIC.
 
   PUBLIC SECTION.
@@ -13,27 +12,22 @@ CLASS zcl_advoat_oea_analyzer DEFINITION
       constructor
         IMPORTING
           description    TYPE string
-          source_objects TYPE zif_advoat_ty_global=>ty_tadir_objects
-          parallel       TYPE abap_bool OPTIONAL
-          max_tasks      TYPE i DEFAULT 12.
+          source_objects TYPE zif_advoat_ty_global=>ty_tadir_objects.
   PROTECTED SECTION.
+    DATA:
+      source_objects TYPE zif_advoat_oea_source_object=>ty_table,
+      id             TYPE sysuuid_x16.
+    METHODS:
+      analyze.
   PRIVATE SECTION.
     CONSTANTS:
       c_two_hour_validity TYPE timestamp VALUE 7200.
 
     DATA:
-      id                   TYPE sysuuid_x16,
-      tadir_obj_data       TYPE zif_advoat_ty_global=>ty_tadir_objects,
-      source_objects_flat  TYPE zif_advoat_ty_oea=>ty_source_objects_ext,
-      source_objects       TYPE zif_advoat_oea_source_object=>ty_table,
-      parallel             TYPE abap_bool,
-      max_tasks            TYPE i,
-      repo_reader          TYPE REF TO zif_advoat_tadir_reader,
-      obj_env_dac          TYPE REF TO zif_advoat_oea_dac,
-      analysis_info        TYPE zif_advoat_ty_oea=>ty_analysis_info_db,
-      analyzed_with_errors TYPE abap_bool,
-      free_tasks           TYPE i,
-      server_group         TYPE rzlli_apcl.
+      tadir_obj_data TYPE zif_advoat_ty_global=>ty_tadir_objects,
+      repo_reader    TYPE REF TO zif_advoat_tadir_reader,
+      obj_env_dac    TYPE REF TO zif_advoat_oea_dac,
+      analysis_info  TYPE zif_advoat_ty_oea=>ty_analysis_info_db.
 
     METHODS:
       "! <p class="shorttext synchronized" lang="en">Fills analysis information</p>
@@ -44,16 +38,9 @@ CLASS zcl_advoat_oea_analyzer DEFINITION
       resolve_source_objects
         RAISING
           zcx_advoat_exception,
-      is_parallel_active
-        RETURNING
-          VALUE(result) TYPE abap_bool,
-      run_serial
-        IMPORTING
-          source_object TYPE REF TO zif_advoat_oea_source_object,
       derive_src_objects
         IMPORTING
-          source_object TYPE REF TO zif_advoat_oea_source_object,
-      analyze.
+          source_object TYPE REF TO zif_advoat_oea_source_object.
 ENDCLASS.
 
 
@@ -66,8 +53,6 @@ CLASS zcl_advoat_oea_analyzer IMPLEMENTATION.
     id = zcl_advoat_system_util=>create_sysuuid_x16( ).
     analysis_info = VALUE #(
       description = description ).
-    me->parallel = parallel.
-    me->max_tasks = max_tasks.
     repo_reader = zcl_advoat_reader_factory=>create_repo_reader( ).
     obj_env_dac = zcl_advoat_oea_dac=>get_instance( ).
     tadir_obj_data = source_objects.
@@ -76,10 +61,23 @@ CLASS zcl_advoat_oea_analyzer IMPLEMENTATION.
 
   METHOD zif_advoat_oea_analyzer~run.
 
+    DATA(timer) = cl_abap_runtime=>create_hr_timer( ).
+
     TRY.
+        timer->get_runtime( ).
         fill_analysis_info( ).
         resolve_source_objects( ).
+
         analyze( ).
+
+        GET TIME STAMP FIELD analysis_info-created_at.
+
+        analysis_info-valid_to = cl_abap_tstmp=>add(
+          tstmp = analysis_info-created_at
+          secs  = c_two_hour_validity ).
+        analysis_info-duration = timer->get_runtime( ) / 1000.
+
+        obj_env_dac->insert_analysis_info( analysis_info ).
 
         COMMIT WORK.
       CATCH zcx_advoat_exception INTO DATA(error).
@@ -100,13 +98,10 @@ CLASS zcl_advoat_oea_analyzer IMPLEMENTATION.
       BASE analysis_info
       analysis_id = id
       created_by  = sy-uname ).
-
   ENDMETHOD.
 
 
   METHOD resolve_source_objects.
-    DATA: derived_source_objects TYPE TABLE OF REF TO zif_advoat_oea_source_object.
-
     LOOP AT tadir_obj_data INTO DATA(tadir_obj_data_entry).
       TRY.
           DATA(source_obj) = zcl_advoat_oea_factory=>create_source_object(
@@ -173,69 +168,22 @@ CLASS zcl_advoat_oea_analyzer IMPLEMENTATION.
 
 
   METHOD analyze.
-    DATA: parallel_runner TYPE REF TO lcl_parallel_analyzer,
-          start_time      TYPE timestampl,
-          end_time        TYPE timestampl.
-
-    GET TIME STAMP FIELD start_time.
-
-    DATA(is_parallel) = is_parallel_active( ).
-
-    IF is_parallel = abap_true.
-      parallel_runner = NEW #( max_tasks = max_tasks ).
-      " only continue in parallel mode if system has the capacity
-      is_parallel = parallel_runner->has_enough_tasks( ).
-    ENDIF.
 
     LOOP AT source_objects INTO DATA(src_obj).
       CHECK src_obj->needs_processing( ).
 
-      IF is_parallel = abap_true.
-        parallel_runner->run(
-          analysis_id   = analysis_info-analysis_id
-          source_object = src_obj ).
-      ELSE.
-        run_serial( src_obj ).
-      ENDIF.
+      src_obj->determine_environment( ).
+      src_obj->persist( id ).
+      src_obj->set_processing( abap_false ).
 
       DELETE source_objects.
     ENDLOOP.
 
-    IF is_parallel = abap_true AND parallel_runner IS BOUND.
-      parallel_runner->wait_until_finished( ).
-    ENDIF.
-
-    GET TIME STAMP FIELD end_time.
-
-    GET TIME STAMP FIELD analysis_info-created_at.
-
-    analysis_info-valid_to = cl_abap_tstmp=>add(
-      tstmp = analysis_info-created_at
-      secs  = c_two_hour_validity ).
-    analysis_info-duration = cl_abap_tstmp=>subtract(
-      tstmp1 = end_time
-      tstmp2 = start_time ).
-
-    obj_env_dac->insert_analysis_info( analysis_info ).
-
-  ENDMETHOD.
-
-
-  METHOD is_parallel_active.
-    result = xsdbool( parallel = abap_true AND lines( source_objects ) > 1 ).
-  ENDMETHOD.
-
-
-  METHOD run_serial.
-    source_object->determine_environment( ).
-    source_object->persist( id ).
-    source_object->set_processing( abap_false ).
   ENDMETHOD.
 
 
   METHOD zif_advoat_oea_analyzer~get_duration.
     result = analysis_info-duration.
   ENDMETHOD.
-
 
 ENDCLASS.
