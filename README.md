@@ -8,7 +8,9 @@ Advanced Object Analysis tools
 - **/src/wb_obj**
   Classes concerning Workbench objects
 - **/src/oea**
-  Contains Classes/interfaces for Object Environment Analysis  
+  Contains repository objects for Object Environment Analysis  
+- **/src/parl**
+  Contains repository objects for parallel processing
   
   Important Objects in package  
   Object Name               | Purpose
