@@ -9,13 +9,14 @@ Advanced Object Analysis tools
   Classes concerning Workbench objects
 - **/src/oea**
   Contains repository objects for Object Environment Analysis  
-- **/src/parl**
-  Contains repository objects for parallel processing
   
   Important Objects in package  
   Object Name               | Purpose
   --------------------------|------------------------------------
   ZCL_ADVOAT_OEA_ANALYZER   | Central class which handles object environment analysis. Can be created via ZCL_ADVOAT_OEA_FACTORY=>CREATE_ANALYZER
+  
+- **/src/parl**
+  Contains repository objects for parallel processing  
 
 ## Installation
 
