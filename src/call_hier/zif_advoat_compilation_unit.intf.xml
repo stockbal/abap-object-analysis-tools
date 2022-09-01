@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Call hierarchy for a method/form/function</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_CALLED_UNITS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves call hierarchy</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_CALL_POSITIONS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns all call positions of the unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_DESCRIPTION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns description</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_ENCL_OBJECT_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves the enclosing object of the compilation unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_ENCL_OBJ_DISPLAY_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves the display name of the enclosing object</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_FULL_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves the full name of the unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_INCLUDE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the include where the unit is called</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_SIMPLE_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves the simple name of the compilation unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_TYPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves the type of the compilation unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+     <CMPNAME>GET_VISIBILITY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns value of the visibility (for methods)</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
