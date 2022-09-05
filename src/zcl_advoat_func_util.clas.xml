@@ -20,6 +20,12 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZCL_ADVOAT_FUNC_UTIL</CLSNAME>
+     <CMPNAME>GET_FUNCTION_INCLUDE_BY_FNAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves include for function module name</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_FUNC_UTIL</CLSNAME>
      <CMPNAME>GET_FUNCTION_MODULE_INFO</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Retrieves function module information</DESCRIPT>
@@ -29,6 +35,12 @@
      <CMPNAME>GET_FUNC_MODULE_BY_INCLUDE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Retrieves function module info by include name</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_ADVOAT_FUNC_UTIL</CLSNAME>
+     <CMPNAME>GET_PROGNAME_FOR_GROUP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Retrieves program for function group name</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

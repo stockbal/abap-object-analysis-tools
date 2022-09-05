@@ -2,17 +2,30 @@
 CLASS zcl_advoat_func_util DEFINITION
   PUBLIC
   FINAL
-  CREATE PUBLIC .
+  CREATE PUBLIC.
 
   PUBLIC SECTION.
     CLASS-METHODS:
+      "! <p class="shorttext synchronized" lang="en">Retrieves program for function group name</p>
+      get_progname_for_group
+        IMPORTING
+          group         TYPE rs38l_area
+        RETURNING
+          VALUE(result) TYPE progname
+        RAISING
+          zcx_advoat_not_exists,
       "! <p class="shorttext synchronized" lang="en">Returns 'X' if function module exists</p>
       function_exists
         IMPORTING
           function_module TYPE tfdir-funcname
         RETURNING
           VALUE(result)   TYPE abap_bool,
-
+      "! <p class="shorttext synchronized" lang="en">Retrieves include for function module name</p>
+      get_function_include_by_fname
+        IMPORTING
+          function_module TYPE tfdir-funcname
+        RETURNING
+          VALUE(result)   TYPE progname,
       "! <p class="shorttext synchronized" lang="en">Retrieves function module information</p>
       get_function_module_info
         IMPORTING
@@ -91,6 +104,39 @@ CLASS zcl_advoat_func_util IMPLEMENTATION.
         EXPORTING
           text = |Function include { include } does not exist|.
     ENDIF.
+  ENDMETHOD.
+
+  METHOD get_function_include_by_fname.
+    DATA(funcname) = CONV rs38l_fnam( to_upper( function_module ) ).
+
+    CALL FUNCTION 'FUNCTION_EXISTS'
+      EXPORTING
+        funcname           = function_module
+      IMPORTING
+        include            = result
+      EXCEPTIONS
+        function_not_exist = 1
+        OTHERS             = 2.
+  ENDMETHOD.
+
+
+  METHOD get_progname_for_group.
+    DATA(l_group) = CONV rs38l_area( to_upper( group ) ).
+
+    CALL FUNCTION 'FUNCTION_INCLUDE_INFO'
+      IMPORTING
+        pname  = result
+      CHANGING
+        group  = l_group
+      EXCEPTIONS
+        OTHERS = 1.
+    IF sy-subrc <> 0.
+      CLEAR result.
+      RAISE EXCEPTION TYPE zcx_advoat_not_exists
+        EXPORTING
+          text = |Function group { group } does not exist|.
+    ENDIF.
+
   ENDMETHOD.
 
 ENDCLASS.

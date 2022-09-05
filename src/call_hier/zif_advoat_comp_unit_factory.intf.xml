@@ -3,25 +3,25 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOINTERF>
-    <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
+    <CLSNAME>ZIF_ADVOAT_COMP_UNIT_FACTORY</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Call hierarchy for a method/form/function</DESCRIPT>
+    <DESCRIPT>Compilation unit factory</DESCRIPT>
     <EXPOSURE>2</EXPOSURE>
     <STATE>1</STATE>
     <UNICODE>X</UNICODE>
    </VSEOINTERF>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
-     <CMPNAME>GET_CALLED_UNITS</CMPNAME>
+     <CLSNAME>ZIF_ADVOAT_COMP_UNIT_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_COMP_UNIT</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Retrieves call hierarchy</DESCRIPT>
+     <DESCRIPT>Creates compilation unit</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZIF_ADVOAT_COMPILATION_UNIT</CLSNAME>
-     <CMPNAME>GET_CALL_POSITION_URI</CMPNAME>
+     <CLSNAME>ZIF_ADVOAT_COMP_UNIT_FACTORY</CLSNAME>
+     <CMPNAME>CREATE_COMP_UNIT_FROM_EXT</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Returns call position URI</DESCRIPT>
+     <DESCRIPT>Creates compilation unit from data request</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
