@@ -3,7 +3,6 @@ INTERFACE zif_advoat_ty_global
   PUBLIC .
 
   TYPES:
-    ty_visibility TYPE c LENGTH 1,
     "! Workbench object name
     BEGIN OF ty_wb_object_name,
       "! Name in TADIR
