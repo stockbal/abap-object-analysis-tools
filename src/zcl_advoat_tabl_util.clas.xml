@@ -13,7 +13,6 @@
    </VSEOCLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZCL_ADVOAT_TABL_UTIL</CLSNAME>
      <CMPNAME>GET_TABLE_WB_TYPE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Retrieves workbench type of given table</DESCRIPT>

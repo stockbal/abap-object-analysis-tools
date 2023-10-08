@@ -12,13 +12,11 @@
    </VSEOINTERF>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZIF_ADVOAT_C_OEA</CLSNAME>
      <CMPNAME>C_AGGREGATION_LEVEL</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Aggregation level for object environment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZIF_ADVOAT_C_OEA</CLSNAME>
      <CMPNAME>C_ANALYSIS_MODE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Mode for object environment analysis</DESCRIPT>
